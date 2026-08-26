@@ -1,26 +1,103 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #08090a;
+  --bg-card: #0d0f11;
+  --bg-card-strong: #121517;
+  --fg: #e8eaec;
+  --fg-soft: #c3cbd1;
+  --muted: #a3abb2;
+  --muted-strong: #8a9299;
+  --muted-weak: #6f777d;
+  --dim: #5e656b;
+  --dim-strong: #4a5055;
+  --line: rgba(255, 255, 255, 0.07);
+  --line-strong: rgba(255, 255, 255, 0.14);
+  --accent: #c8ff4d;
+  --accent-soft: #e4ffa3;
+  --accent-ink: #0a0c08;
+  --warn: #e8b84b;
+  --ok: #5ee6c0;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-bg-card: var(--bg-card);
+  --color-bg-card-strong: var(--bg-card-strong);
+  --color-fg: var(--fg);
+  --color-fg-soft: var(--fg-soft);
+  --color-muted: var(--muted);
+  --color-muted-strong: var(--muted-strong);
+  --color-muted-weak: var(--muted-weak);
+  --color-dim: var(--dim);
+  --color-dim-strong: var(--dim-strong);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-ink: var(--accent-ink);
+  --color-warn: var(--warn);
+  --color-ok: var(--ok);
+  --font-sans: "Pretendard", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/*
+  이 규칙들을 @layer base 안에 넣는 이유: Tailwind v4는 CSS 레이어를 쓰는데,
+  레이어 밖에 있는 일반 CSS는 명시도(specificity)와 무관하게 유틸리티 클래스보다
+  항상 우선 적용돼요. 그러면 <a className="text-accent-ink">가 아래 a{color:...}
+  규칙에 밀려 항상 무시됩니다. base 레이어에 넣으면 Tailwind 유틸리티가
+  정상적으로 이 값을 덮어쓸 수 있어요.
+*/
+@layer base {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    color: var(--fg);
+    font-family: "Pretendard", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--accent-soft);
+  }
+
+  @keyframes pulseDot {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.25;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .animate-pulse-dot {
+    animation: pulseDot 2.4s ease-in-out infinite;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
