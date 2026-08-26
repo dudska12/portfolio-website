@@ -1,69 +1,114 @@
-import Image from "next/image";
+import Link from "next/link";
+import { SiteHeader } from "@/components/SiteHeader";
+import { ProjectCard } from "@/components/ProjectCard";
+import { profile, skills, projects } from "@/lib/site-config";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <>
+      <SiteHeader />
+
+      <div className="max-w-[1080px] mx-auto px-8">
+        <section className="pt-[120px] pb-[100px] border-b border-line">
+          <div className="font-mono text-[11px] tracking-[0.16em] text-accent mb-6.5">
+            PORTFOLIO · 2026
+          </div>
+          <h1 className="m-0 mb-6.5 text-5xl md:text-[68px] leading-[1.05] tracking-tight font-bold text-balance break-keep">
+            {profile.tagline}
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="m-0 text-lg leading-[1.75] text-muted max-w-[52ch] break-keep">
+            {profile.intro}
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        </section>
+
+        <section id="free" className="py-16 pb-10">
+          <Link
+            href="/free"
+            className="border border-line-strong/60 rounded-[18px] px-10 py-8 flex flex-col md:flex-row md:items-center justify-between gap-7 bg-bg-card hover:border-accent/45 hover:bg-bg-card-strong transition-colors"
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            <div>
+              <div className="flex items-center gap-2.5 mb-3.5 flex-wrap">
+                <span className="font-mono text-[10px] tracking-[0.12em] text-accent border border-accent/25 px-2.5 py-1 rounded-full">
+                  SIDE PROJECT
+                </span>
+                <span className="font-mono text-[10px] tracking-[0.12em] text-ok border border-ok/30 px-2.5 py-1 rounded-full">
+                  신청 접수중
+                </span>
+              </div>
+              <h3 className="m-0 mb-2.5 text-[28px] tracking-tight font-bold">
+                무료 홈페이지 제작
+              </h3>
+              <p className="m-0 text-[15px] leading-[1.7] text-muted-strong max-w-[60ch]">
+                신청하신 순서대로 홈페이지를 무료로 만들어 드립니다. 완성된 사이트는 순번과
+                함께 공개됩니다.
+              </p>
+            </div>
+            <span className="text-sm font-semibold text-accent whitespace-nowrap">
+              자세히 →
+            </span>
+          </Link>
+        </section>
+
+        <section id="work" className="pt-6 pb-24">
+          <div className="flex flex-col gap-4">
+            {projects.map((project) => (
+              <ProjectCard key={project.slug} project={project} />
+            ))}
+          </div>
+        </section>
+
+        <section id="about" className="pb-24 border-t border-line">
+          <div className="pt-11 grid grid-cols-1 md:grid-cols-[240px_1fr] gap-12">
+            <h2 className="m-0 font-mono text-sm tracking-[0.16em] text-muted-weak uppercase">
+              About
+            </h2>
+            <div>
+              <p className="m-0 mb-7 text-[17px] leading-[1.8] text-fg-soft">{profile.about}</p>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {skills.map((s) => (
+                  <div
+                    key={s.name}
+                    className="border border-line-strong/70 rounded-[10px] px-4 py-3.5 bg-bg-card"
+                  >
+                    <div className="font-mono text-[13px]">{s.name}</div>
+                    <div className="text-xs text-muted-weak mt-1.5">{s.note}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="pb-[120px] border-t border-line">
+          <div className="pt-11 grid grid-cols-1 md:grid-cols-[240px_1fr] gap-12">
+            <h2 className="m-0 font-mono text-sm tracking-[0.16em] text-muted-weak uppercase">
+              Contact
+            </h2>
+            <div className="flex flex-col gap-3 max-w-[520px]">
+              <a
+                href={`mailto:${profile.email}`}
+                className="flex items-center justify-between border border-line-strong/70 rounded-xl px-6 py-5 text-fg hover:border-accent/40"
+              >
+                <span className="font-mono text-[11px] tracking-[0.14em] text-muted-weak">
+                  EMAIL
+                </span>
+                <span className="text-[15px]">{profile.email} ↗</span>
+              </a>
+              <a
+                href={profile.githubUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-between border border-line-strong/70 rounded-xl px-6 py-5 text-fg hover:border-accent/40"
+              >
+                <span className="font-mono text-[11px] tracking-[0.14em] text-muted-weak">
+                  GITHUB
+                </span>
+                <span className="text-[15px]">{profile.githubLabel} ↗</span>
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </>
   );
 }
