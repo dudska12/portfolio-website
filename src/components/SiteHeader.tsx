@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { profile } from "@/lib/site-config";
 
 export function SiteHeader() {
   return (
@@ -10,7 +9,7 @@ export function SiteHeader() {
             <span className="w-2 h-2 bg-accent rounded-sm animate-pulse-dot" />
           </span>
           <span className="font-mono text-[13px] tracking-[0.18em] uppercase">
-            {profile.name}
+            PORTFOLIO
           </span>
         </Link>
         <nav className="flex items-center gap-6 text-sm">
