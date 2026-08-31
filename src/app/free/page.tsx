@@ -2,6 +2,10 @@ import { BackLink } from "@/components/BackLink";
 import { profile, freeOffer } from "@/lib/site-config";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 
+// Supabase에서 매 요청마다 최신 신청 데이터를 읽어와야 해서, 이 페이지는
+// 정적 캐싱하지 않고 항상 새로 렌더링하도록 강제함.
+export const dynamic = "force-dynamic";
+
 const statusClasses: Record<string, string> = {
   완료: "text-accent border-accent/30 bg-accent/10",
   제작중: "text-ok border-ok/30 bg-ok/10",
