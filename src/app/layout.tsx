@@ -3,7 +3,7 @@ import { profile } from "@/lib/site-config";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: `${profile.name} · Portfolio`,
+  title: "포트폴리오",
   description: profile.tagline,
 };
 

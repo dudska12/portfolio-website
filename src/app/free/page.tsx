@@ -56,7 +56,7 @@ export default async function FreeWebsitePage() {
             {queue.length > 0 ? `지금 신청 접수중 · 대기 ${waitingCount}팀` : "지금 신청 접수중 · 선착순 모집"}
           </div>
           <h1 className="m-0 mb-6 text-4xl md:text-[60px] leading-[1.08] tracking-tight font-bold text-balance break-keep">
-            홈페이지, <span className="text-accent">무료로</span>
+            홈페이지 <span className="text-accent">무료로</span>
             <br />
             만들어 드립니다.
           </h1>
