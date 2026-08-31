@@ -45,11 +45,7 @@ export async function POST(request: Request) {
 
   if (insertError) {
     console.error("[free-applications] insert failed:", insertError);
-    // TODO: 원인 파악되면 메시지 노출 다시 지우기
-    return NextResponse.json(
-      { error: "insert failed", detail: insertError.message, hint: insertError.hint, code: insertError.code },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "insert failed" }, { status: 500 });
   }
 
   const { count, error: countError } = await supabaseAdmin
