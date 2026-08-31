@@ -44,6 +44,7 @@ async function getQueue(): Promise<QueueRow[]> {
 export default async function FreeWebsitePage() {
   const queue = await getQueue();
   const waitingCount = queue.filter((q) => q.status === "대기").length;
+  const isFull = queue.length >= freeOffer.maxApplicants;
 
   return (
     <>
@@ -51,9 +52,21 @@ export default async function FreeWebsitePage() {
 
       <div className="max-w-[1080px] mx-auto px-8">
         <section className="pt-16 pb-16">
-          <div className="inline-flex items-center gap-2.5 px-3 py-1.5 border border-ok/30 rounded-full font-mono text-[11px] tracking-[0.12em] text-ok mb-6.5 break-keep">
-            <span className="w-1.5 h-1.5 rounded-full bg-ok animate-pulse-dot shrink-0" />
-            {queue.length > 0 ? `지금 신청 접수중 · 대기 ${waitingCount}팀` : "지금 신청 접수중 · 선착순 모집"}
+          <div
+            className={`inline-flex items-center gap-2.5 px-3 py-1.5 border rounded-full font-mono text-[11px] tracking-[0.12em] mb-6.5 break-keep ${
+              isFull ? "border-line-strong text-muted-strong" : "border-ok/30 text-ok"
+            }`}
+          >
+            <span
+              className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+                isFull ? "bg-muted-weak" : "bg-ok animate-pulse-dot"
+              }`}
+            />
+            {isFull
+              ? "선착순 마감 · 다음 모집 소식은 추후 안내드려요"
+              : queue.length > 0
+                ? `지금 신청 접수중 · 대기 ${waitingCount}팀`
+                : "지금 신청 접수중 · 선착순 모집"}
           </div>
           <h1 className="m-0 mb-6 text-4xl md:text-[60px] leading-[1.08] tracking-tight font-bold text-balance break-keep">
             홈페이지 <span className="text-accent">무료로</span>
@@ -66,14 +79,20 @@ export default async function FreeWebsitePage() {
             <strong className="text-fg font-semibold">제작비는 0원입니다.</strong>
           </p>
           <div className="flex gap-3.5 items-center flex-wrap">
-            <a
-              href={freeOffer.formUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2.5 px-6 py-4 rounded-[10px] bg-accent text-accent-ink text-base font-semibold"
-            >
-              구글폼으로 신청하기 →
-            </a>
+            {isFull ? (
+              <span className="inline-flex items-center gap-2.5 px-6 py-4 rounded-[10px] border border-dashed border-line-strong text-muted-weak text-base font-semibold cursor-not-allowed">
+                🔒 선착순 마감되었습니다
+              </span>
+            ) : (
+              <a
+                href={freeOffer.formUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2.5 px-6 py-4 rounded-[10px] bg-accent text-accent-ink text-base font-semibold"
+              >
+                구글폼으로 신청하기 →
+              </a>
+            )}
             <a
               href="#queue"
               className="inline-flex items-center gap-2.5 px-6 py-4 rounded-[10px] border border-line-strong text-fg text-base font-medium"
@@ -277,23 +296,43 @@ export default async function FreeWebsitePage() {
         </section>
 
         <section className="pb-[120px]">
-          <div className="border border-accent/30 rounded-2xl p-12 bg-gradient-to-b from-accent/6 to-transparent text-center">
-            <h2 className="m-0 mb-3.5 text-[34px] font-bold tracking-tight break-keep">
-              신청은 3분이면 끝납니다.
-            </h2>
-            <p className="m-0 mb-7 text-base leading-[1.75] text-muted break-keep">
-              어떤 홈페이지가 필요한지 모르셔도 괜찮습니다. 하고 있는 일만 적어주시면 나머지는
-              같이 정리해요.
-            </p>
-            <a
-              href={freeOffer.formUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2.5 px-7.5 py-4 rounded-[10px] bg-accent text-accent-ink text-base font-semibold"
-            >
-              구글폼으로 신청하기 →
-            </a>
-            <div className="mt-4.5 text-[13px] text-muted-weak">문의 · {profile.email}</div>
+          <div
+            className={`border rounded-2xl p-12 text-center ${
+              isFull
+                ? "border-line-strong bg-bg-card"
+                : "border-accent/30 bg-gradient-to-b from-accent/6 to-transparent"
+            }`}
+          >
+            {isFull ? (
+              <>
+                <h2 className="m-0 mb-3.5 text-[34px] font-bold tracking-tight break-keep">
+                  이번 선착순 {freeOffer.maxApplicants}팀은 마감되었습니다.
+                </h2>
+                <p className="m-0 mb-7 text-base leading-[1.75] text-muted break-keep">
+                  다음 모집 소식은 이 페이지에 먼저 올라옵니다. 궁금한 점은 이메일로 문의해주세요.
+                </p>
+                <div className="text-[13px] text-muted-weak">문의 · {profile.email}</div>
+              </>
+            ) : (
+              <>
+                <h2 className="m-0 mb-3.5 text-[34px] font-bold tracking-tight break-keep">
+                  신청은 3분이면 끝납니다.
+                </h2>
+                <p className="m-0 mb-7 text-base leading-[1.75] text-muted break-keep">
+                  어떤 홈페이지가 필요한지 모르셔도 괜찮습니다. 하고 있는 일만 적어주시면 나머지는
+                  같이 정리해요.
+                </p>
+                <a
+                  href={freeOffer.formUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2.5 px-7.5 py-4 rounded-[10px] bg-accent text-accent-ink text-base font-semibold"
+                >
+                  구글폼으로 신청하기 →
+                </a>
+                <div className="mt-4.5 text-[13px] text-muted-weak">문의 · {profile.email}</div>
+              </>
+            )}
           </div>
         </section>
       </div>

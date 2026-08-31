@@ -418,6 +418,8 @@ export const chatSentry = {
 
 export const freeOffer = {
   formUrl: "https://forms.gle/CKsyZB5nmkK1MSwSA",
+  // Apps Script 웹훅의 MAX_APPLICANTS와 반드시 같은 값으로 맞춰야 합니다.
+  maxApplicants: 5,
   costs: [
     { label: "제작비", value: "0원", tone: "accent", note: "기획 · 디자인 · 개발 전부 무료" },
     { label: "도메인 (주소)", value: "연 2만원 내외", tone: "default", note: ".com / .kr 등, 업체 결제는 직접" },
