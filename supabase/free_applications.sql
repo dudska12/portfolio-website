@@ -17,3 +17,7 @@ create table public.free_applications (
 -- RLS를 켜두고 정책을 하나도 만들지 않으면, anon/publishable 키로는
 -- 이 테이블에 전혀 접근할 수 없습니다. secret key(서버 전용, RLS 우회)만 접근 가능해요.
 alter table public.free_applications enable row level security;
+
+-- "Automatically expose new tables"를 꺼둔 프로젝트에서는 이 GRANT가 없으면
+-- service_role(secret key)조차 접근이 막힙니다 (RLS 우회와 별개의 테이블 권한).
+grant select, insert, update, delete on public.free_applications to service_role;
