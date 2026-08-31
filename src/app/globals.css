@@ -2,8 +2,8 @@
 
 :root {
   --bg: #08090a;
-  --bg-card: #0d0f11;
-  --bg-card-strong: #121517;
+  --bg-card: #1b2126;
+  --bg-card-strong: #262e35;
   --fg: #e8eaec;
   --fg-soft: #c3cbd1;
   --muted: #a3abb2;
@@ -11,8 +11,8 @@
   --muted-weak: #6f777d;
   --dim: #5e656b;
   --dim-strong: #4a5055;
-  --line: rgba(255, 255, 255, 0.07);
-  --line-strong: rgba(255, 255, 255, 0.14);
+  --line: rgba(255, 255, 255, 0.1);
+  --line-strong: rgba(255, 255, 255, 0.24);
   --accent: #c8ff4d;
   --accent-soft: #e4ffa3;
   --accent-ink: #0a0c08;
