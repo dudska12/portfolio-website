@@ -55,12 +55,12 @@ export default async function FreeWebsitePage() {
             <span className="w-1.5 h-1.5 rounded-full bg-ok animate-pulse-dot" />
             {queue.length > 0 ? `지금 신청 접수중 · 대기 ${waitingCount}팀` : "지금 신청 접수중 · 선착순 모집"}
           </div>
-          <h1 className="m-0 mb-6 text-4xl md:text-[60px] leading-[1.08] tracking-tight font-bold text-balance">
+          <h1 className="m-0 mb-6 text-4xl md:text-[60px] leading-[1.08] tracking-tight font-bold text-balance break-keep">
             홈페이지, <span className="text-accent">무료로</span>
             <br />
             만들어 드립니다.
           </h1>
-          <p className="m-0 mb-8.5 text-lg leading-[1.8] text-muted max-w-[54ch]">
+          <p className="m-0 mb-8.5 text-lg leading-[1.8] text-muted max-w-[54ch] break-keep">
             가게, 개인 작업, 작은 팀 — 홈페이지가 필요한데 어디서부터 시작해야 할지 모르겠다면
             신청만 해주세요. 신청하신 순서대로 한 팀씩 직접 만들어 드립니다.{" "}
             <strong className="text-fg font-semibold">제작비는 0원입니다.</strong>
@@ -90,10 +90,10 @@ export default async function FreeWebsitePage() {
                 꼭 읽어주세요
               </span>
             </div>
-            <h2 className="m-0 mb-3.5 text-2xl font-bold tracking-tight">
+            <h2 className="m-0 mb-3.5 text-2xl font-bold tracking-tight break-keep">
               제작은 무료지만, 도메인·호스팅 비용은 신청자 부담입니다.
             </h2>
-            <p className="m-0 mb-5.5 text-[15px] leading-[1.8] text-fg-soft max-w-[70ch]">
+            <p className="m-0 mb-5.5 text-[15px] leading-[1.8] text-fg-soft max-w-[70ch] break-keep">
               홈페이지를 인터넷에 띄워두려면 <strong className="text-fg font-semibold">주소(도메인)</strong>과{" "}
               <strong className="text-fg font-semibold">파일을 올려둘 공간(호스팅)</strong>이
               필요합니다. 이 두 가지는 외부 업체에 매년/매월 내는 실비라서 제가 대신 낼 수
@@ -111,7 +111,7 @@ export default async function FreeWebsitePage() {
                   >
                     {c.value}
                   </div>
-                  <div className="text-xs text-muted-weak mt-2 leading-[1.6]">{c.note}</div>
+                  <div className="text-xs text-muted-weak mt-2 leading-[1.6] break-keep">{c.note}</div>
                 </div>
               ))}
             </div>
@@ -123,7 +123,7 @@ export default async function FreeWebsitePage() {
             <h2 className="m-0 mb-2.5 font-mono text-sm tracking-[0.16em] text-muted-weak uppercase">
               처음이신가요?
             </h2>
-            <p className="m-0 text-base text-muted">용어 세 개만 알면 충분합니다.</p>
+            <p className="m-0 text-base text-muted break-keep">용어 세 개만 알면 충분합니다.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 mt-6.5">
             {freeOffer.basics.map((b) => (
@@ -132,8 +132,8 @@ export default async function FreeWebsitePage() {
                   {b.en}
                 </div>
                 <div className="text-xl font-bold mb-3">{b.ko}</div>
-                <p className="m-0 mb-3.5 text-sm leading-[1.75] text-muted">{b.desc}</p>
-                <div className="text-[13px] leading-[1.7] text-muted-weak border-t border-line pt-3.5">
+                <p className="m-0 mb-3.5 text-sm leading-[1.75] text-muted break-keep">{b.desc}</p>
+                <div className="text-[13px] leading-[1.7] text-muted-weak border-t border-line pt-3.5 break-keep">
                   비유하면 — {b.metaphor}
                 </div>
               </div>
@@ -156,7 +156,7 @@ export default async function FreeWebsitePage() {
                 </div>
                 <div>
                   <div className="text-base md:text-[17px] font-semibold mb-1.5">{s.title}</div>
-                  <div className="text-sm leading-[1.75] text-muted-strong">{s.desc}</div>
+                  <div className="text-sm leading-[1.75] text-muted-strong break-keep">{s.desc}</div>
                 </div>
               </div>
             ))}
@@ -206,13 +206,13 @@ export default async function FreeWebsitePage() {
             </div>
           ) : (
             <div className="border border-dashed border-line-strong rounded-2xl px-6 py-12 text-center">
-              <p className="m-0 text-[15px] text-muted-strong">아직 신청자가 없습니다.</p>
-              <p className="m-0 mt-1.5 text-sm text-muted-weak">
+              <p className="m-0 text-[15px] text-muted-strong break-keep">아직 신청자가 없습니다.</p>
+              <p className="m-0 mt-1.5 text-sm text-muted-weak break-keep">
                 첫 번째로 신청해주시는 분의 사이트가 여기 가장 먼저 올라갑니다.
               </p>
             </div>
           )}
-          <p className="mt-3.5 text-[13px] leading-[1.7] text-muted-weak">
+          <p className="mt-3.5 text-[13px] leading-[1.7] text-muted-weak break-keep">
             공개 여부는 신청자 동의 후에만 표시합니다. 비공개를 원하시면 신청서에 적어주세요.
           </p>
         </section>
@@ -224,8 +224,8 @@ export default async function FreeWebsitePage() {
           <div className="flex flex-col gap-2.5">
             {freeOffer.faq.map((f) => (
               <div key={f.q} className="border border-line-strong/60 rounded-xl px-6.5 py-5.5">
-                <div className="text-base font-semibold mb-2.5">Q. {f.q}</div>
-                <div className="text-sm leading-[1.8] text-muted-strong">{f.a}</div>
+                <div className="text-base font-semibold mb-2.5 break-keep">Q. {f.q}</div>
+                <div className="text-sm leading-[1.8] text-muted-strong break-keep">{f.a}</div>
               </div>
             ))}
           </div>
@@ -233,10 +233,10 @@ export default async function FreeWebsitePage() {
 
         <section className="pb-[120px]">
           <div className="border border-accent/30 rounded-2xl p-12 bg-gradient-to-b from-accent/6 to-transparent text-center">
-            <h2 className="m-0 mb-3.5 text-[34px] font-bold tracking-tight">
+            <h2 className="m-0 mb-3.5 text-[34px] font-bold tracking-tight break-keep">
               신청은 3분이면 끝납니다.
             </h2>
-            <p className="m-0 mb-7 text-base leading-[1.75] text-muted">
+            <p className="m-0 mb-7 text-base leading-[1.75] text-muted break-keep">
               어떤 홈페이지가 필요한지 모르셔도 괜찮습니다. 하고 있는 일만 적어주시면 나머지는
               같이 정리해요.
             </p>
