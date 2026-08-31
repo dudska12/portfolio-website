@@ -51,8 +51,8 @@ export default async function FreeWebsitePage() {
 
       <div className="max-w-[1080px] mx-auto px-8">
         <section className="pt-16 pb-16">
-          <div className="inline-flex items-center gap-2.5 px-3 py-1.5 border border-ok/30 rounded-full font-mono text-[11px] tracking-[0.12em] text-ok mb-6.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-ok animate-pulse-dot" />
+          <div className="inline-flex items-center gap-2.5 px-3 py-1.5 border border-ok/30 rounded-full font-mono text-[11px] tracking-[0.12em] text-ok mb-6.5 break-keep">
+            <span className="w-1.5 h-1.5 rounded-full bg-ok animate-pulse-dot shrink-0" />
             {queue.length > 0 ? `지금 신청 접수중 · 대기 ${waitingCount}팀` : "지금 신청 접수중 · 선착순 모집"}
           </div>
           <h1 className="m-0 mb-6 text-4xl md:text-[60px] leading-[1.08] tracking-tight font-bold text-balance break-keep">
@@ -168,7 +168,7 @@ export default async function FreeWebsitePage() {
             <h2 className="m-0 font-mono text-sm tracking-[0.16em] text-muted-weak uppercase">
               신청 순서 &amp; 결과물
             </h2>
-            <span className="text-[13px] text-muted-weak">신청 순서대로 진행됩니다</span>
+            <span className="text-[13px] text-muted-weak break-keep">신청 순서대로 진행됩니다</span>
           </div>
           {queue.length > 0 ? (
             <div className="border border-line-strong/70 rounded-2xl overflow-hidden overflow-x-auto">
@@ -186,8 +186,8 @@ export default async function FreeWebsitePage() {
                     className="grid grid-cols-[56px_1.1fr_1fr_100px_110px] md:grid-cols-[72px_1.1fr_1fr_120px_130px] gap-4 px-5 md:px-5.5 py-4.5 border-b border-line/70 last:border-b-0 bg-bg-card items-center text-sm"
                   >
                     <span className="font-mono text-muted-weak">{q.no}</span>
-                    <span className="text-fg">{q.who}</span>
-                    <span className="text-muted-strong">{q.kind}</span>
+                    <span className="text-fg break-keep">{q.who}</span>
+                    <span className="text-muted-strong break-keep">{q.kind}</span>
                     <span>
                       <span
                         className={`font-mono text-[11px] tracking-[0.08em] px-2.5 py-1 rounded-full border ${statusClasses[q.status]}`}
