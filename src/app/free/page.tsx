@@ -142,6 +142,51 @@ export default async function FreeWebsitePage() {
         </section>
 
         <section className="pb-20 border-t border-line">
+          <div className="pt-11 mb-3">
+            <h2 className="m-0 mb-2.5 font-mono text-sm tracking-[0.16em] text-muted-weak uppercase">
+              호스팅, 무료로도 될까요?
+            </h2>
+            <p className="m-0 text-base text-muted break-keep">{freeOffer.hosting.intro}</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 mt-6.5">
+            {freeOffer.hosting.options.map((o) => (
+              <div
+                key={o.title}
+                className={`border rounded-2xl p-6.5 bg-bg-card ${
+                  o.tone === "accent" ? "border-accent/30" : "border-warn/30"
+                }`}
+              >
+                <div className="flex items-center justify-between gap-3 mb-3.5">
+                  <span
+                    className={`font-mono text-[11px] tracking-[0.12em] px-2.5 py-1 rounded-full border ${
+                      o.tone === "accent"
+                        ? "text-accent border-accent/30"
+                        : "text-warn border-warn/30"
+                    }`}
+                  >
+                    {o.title}
+                  </span>
+                  <span
+                    className={`font-mono text-sm font-bold ${
+                      o.tone === "accent" ? "text-accent" : "text-warn"
+                    }`}
+                  >
+                    {o.cost}
+                  </span>
+                </div>
+                <div className="text-base font-semibold mb-2.5 break-keep">{o.forWho}</div>
+                <p className="m-0 mb-3.5 text-sm leading-[1.75] text-muted break-keep">
+                  {o.detail}
+                </p>
+                <div className="text-[13px] leading-[1.7] text-muted-weak border-t border-line pt-3.5 break-keep">
+                  {o.note}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="pb-20 border-t border-line">
           <h2 className="m-0 mb-7.5 pt-11 font-mono text-sm tracking-[0.16em] text-muted-weak uppercase">
             진행 방식
           </h2>
