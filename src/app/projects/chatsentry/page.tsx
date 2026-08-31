@@ -15,24 +15,24 @@ export default function ChatSentryPage() {
     <>
       <BackLink />
 
-      <div className="max-w-[1080px] mx-auto px-8">
-        <header className="flex items-center justify-between py-7 border-b border-line">
-          <div className="flex items-center gap-3">
-            <span className="w-[26px] h-[26px] border-[1.5px] border-accent rounded-md grid place-items-center">
+      <div className="max-w-[1080px] mx-auto px-4 sm:px-8">
+        <header className="flex items-center justify-between gap-3 py-7 border-b border-line">
+          <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
+            <span className="w-[26px] h-[26px] border-[1.5px] border-accent rounded-md grid place-items-center shrink-0">
               <span className="w-2 h-2 bg-accent rounded-sm animate-pulse-dot" />
             </span>
-            <span className="font-mono text-sm tracking-[0.18em] uppercase">
+            <span className="font-mono text-xs sm:text-sm tracking-[0.18em] uppercase whitespace-nowrap">
               {chatSentry.appName}
             </span>
           </div>
-          <nav className="flex gap-7 text-sm text-muted-strong">
-            <a href="#screens" className="text-muted-strong hover:text-fg">
+          <nav className="flex gap-4 sm:gap-7 text-xs sm:text-sm text-muted-strong overflow-x-auto no-scrollbar">
+            <a href="#screens" className="text-muted-strong hover:text-fg whitespace-nowrap">
               동작 화면
             </a>
-            <a href="#stack" className="text-muted-strong hover:text-fg">
+            <a href="#stack" className="text-muted-strong hover:text-fg whitespace-nowrap">
               기술 스택
             </a>
-            <a href="#source" className="text-muted-strong hover:text-fg">
+            <a href="#source" className="text-muted-strong hover:text-fg whitespace-nowrap">
               소스코드
             </a>
           </nav>
@@ -44,7 +44,7 @@ export default function ChatSentryPage() {
               <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-dot" />
               PERSONAL PROJECT · 2026
             </div>
-            <h1 className="m-0 mb-5.5 text-[38px] md:text-[62px] leading-[1.06] tracking-tight font-bold text-balance">
+            <h1 className="m-0 mb-5.5 text-[38px] md:text-[62px] leading-[1.06] tracking-tight font-bold text-balance break-keep">
               {chatSentry.heroTitleLines.map((line) => (
                 <span key={line}>
                   {line}
@@ -54,7 +54,7 @@ export default function ChatSentryPage() {
               <span className="text-accent">{chatSentry.heroTitleHighlight}</span>{" "}
               {chatSentry.heroTitleSuffix}
             </h1>
-            <p className="m-0 mb-9 text-[17px] leading-[1.75] text-muted max-w-[46ch]">
+            <p className="m-0 mb-9 text-[17px] leading-[1.75] text-muted max-w-[46ch] break-keep">
               {chatSentry.heroDesc}
             </p>
             <div className="flex gap-3.5 items-center flex-wrap">
@@ -96,7 +96,7 @@ export default function ChatSentryPage() {
               <span className="text-[13px]">🔒</span> 다운로드 준비 중
             </button>
 
-            <div className="mt-4.5 pt-4.5 border-t border-line text-[13px] leading-[1.7] text-muted-strong">
+            <div className="mt-4.5 pt-4.5 border-t border-line text-[13px] leading-[1.7] text-muted-strong break-keep">
               현재 실행 파일은 <strong className="text-fg-soft font-semibold">배포하지 않습니다.</strong>{" "}
               플랫폼 이용약관상 별도 허가가 필요한 동작이 포함되어 있어, 승인 절차가 끝날 때까지
               바이너리 배포를 보류합니다.
@@ -161,7 +161,7 @@ export default function ChatSentryPage() {
               </div>
             )}
           </div>
-          <p className="mt-4 text-sm leading-[1.7] text-muted-strong max-w-[60ch]">
+          <p className="mt-4 text-sm leading-[1.7] text-muted-strong max-w-[60ch] break-keep">
             {activeShot.desc}
           </p>
         </section>
@@ -186,7 +186,7 @@ export default function ChatSentryPage() {
                     {item.tag}
                   </span>
                 </div>
-                <p className="m-0 text-sm leading-[1.7] text-muted-strong">{item.desc}</p>
+                <p className="m-0 text-sm leading-[1.7] text-muted-strong break-keep">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -225,13 +225,13 @@ export default function ChatSentryPage() {
                 GITHUB
               </span>
               <span className="text-lg font-semibold">{chatSentry.repoLabel} ↗</span>
-              <span className="text-sm leading-[1.7] text-muted-strong">
+              <span className="text-sm leading-[1.7] text-muted-strong break-keep">
                 전체 구조와 구현을 코드로 확인할 수 있습니다. 빌드 방법은 README 참고.
               </span>
             </a>
             <div className="border border-line-strong/70 rounded-2xl p-6.5 bg-warn/4">
               <span className="font-mono text-[11px] tracking-[0.14em] text-warn">NOTICE</span>
-              <p className="mt-2.5 mb-0 text-sm leading-[1.75] text-muted">
+              <p className="mt-2.5 mb-0 text-sm leading-[1.75] text-muted break-keep">
                 이 저장소는{" "}
                 <strong className="text-fg-soft font-semibold">
                   포트폴리오 목적의 코드 공개

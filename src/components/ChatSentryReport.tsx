@@ -40,7 +40,7 @@ export function ChatSentryReport({ report }: { report: Report }) {
           </span>
           <span className="text-sm text-muted-strong">{report.mood.summary}</span>
         </div>
-        <p className="m-0 text-sm leading-[1.8] text-muted-strong border-l-2 border-line-strong pl-4">
+        <p className="m-0 text-sm leading-[1.8] text-muted-strong border-l-2 border-line-strong pl-4 break-keep">
           {report.mood.narrative}
         </p>
         <div className="mt-4 flex items-center gap-3">
@@ -139,7 +139,7 @@ export function ChatSentryReport({ report }: { report: Report }) {
               </div>
               <div className="flex flex-col gap-1.5">
                 {m.quotes.map((q, i) => (
-                  <div key={i} className="text-[13px] leading-[1.7] text-muted-strong">
+                  <div key={i} className="text-[13px] leading-[1.7] text-muted-strong break-keep">
                     {q.donor && <span className="mr-1">💰</span>}
                     <span className="text-fg-soft font-medium">{q.author}</span>: {q.text}
                   </div>

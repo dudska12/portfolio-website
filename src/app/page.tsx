@@ -38,7 +38,7 @@ export default function Home() {
               <h3 className="m-0 mb-2.5 text-[28px] tracking-tight font-bold">
                 무료 홈페이지 제작
               </h3>
-              <p className="m-0 text-[15px] leading-[1.7] text-muted-strong max-w-[60ch]">
+              <p className="m-0 text-[15px] leading-[1.7] text-muted-strong max-w-[60ch] break-keep">
                 신청하신 순서대로 홈페이지를 무료로 만들어 드립니다. 완성된 사이트는 순번과
                 함께 공개됩니다.
               </p>
@@ -150,7 +150,7 @@ export default function Home() {
               About
             </h2>
             <div>
-              <p className="m-0 mb-7 text-[17px] leading-[1.8] text-fg-soft">{profile.about}</p>
+              <p className="m-0 mb-7 text-[17px] leading-[1.8] text-fg-soft break-keep">{profile.about}</p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {skills.map((s) => (
                   <div

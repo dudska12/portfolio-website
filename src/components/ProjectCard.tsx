@@ -22,7 +22,7 @@ export function ProjectCard({ project }: { project: ProjectSummary }) {
           <h3 className="m-0 mb-3.5 text-3xl md:text-[34px] leading-tight tracking-tight font-bold">
             {project.name}
           </h3>
-          <p className="m-0 text-[15px] leading-[1.75] text-muted-strong">{project.summary}</p>
+          <p className="m-0 text-[15px] leading-[1.75] text-muted-strong break-keep">{project.summary}</p>
         </div>
         <div className="flex items-center justify-between gap-4">
           <div className="flex gap-1.5 flex-wrap">

@@ -14,27 +14,27 @@ export default function SonarbizPage() {
     <>
       <BackLink />
 
-      <div className="max-w-[1080px] mx-auto px-8">
-        <header className="flex items-center justify-between py-7 border-b border-line">
-          <div className="flex items-center gap-3">
-            <span className="w-[26px] h-[26px] border-[1.5px] border-accent rounded-md grid place-items-center">
+      <div className="max-w-[1080px] mx-auto px-4 sm:px-8">
+        <header className="flex items-center justify-between gap-3 py-7 border-b border-line">
+          <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
+            <span className="w-[26px] h-[26px] border-[1.5px] border-accent rounded-md grid place-items-center shrink-0">
               <span className="w-2 h-2 bg-accent rounded-sm animate-pulse-dot" />
             </span>
-            <span className="font-mono text-sm tracking-[0.18em] uppercase">
+            <span className="font-mono text-xs sm:text-sm tracking-[0.18em] uppercase whitespace-nowrap">
               {sonarbiz.appName}
             </span>
           </div>
-          <nav className="flex gap-7 text-sm text-muted-strong">
-            <a href="#screens" className="text-muted-strong hover:text-fg">
+          <nav className="flex gap-4 sm:gap-7 text-xs sm:text-sm text-muted-strong overflow-x-auto no-scrollbar">
+            <a href="#screens" className="text-muted-strong hover:text-fg whitespace-nowrap">
               화면
             </a>
-            <a href="#scope" className="text-muted-strong hover:text-fg">
+            <a href="#scope" className="text-muted-strong hover:text-fg whitespace-nowrap">
               담당 영역
             </a>
-            <a href="#stack" className="text-muted-strong hover:text-fg">
+            <a href="#stack" className="text-muted-strong hover:text-fg whitespace-nowrap">
               기술 스택
             </a>
-            <a href="#site" className="text-muted-strong hover:text-fg">
+            <a href="#site" className="text-muted-strong hover:text-fg whitespace-nowrap">
               사이트
             </a>
           </nav>
@@ -101,7 +101,7 @@ export default function SonarbizPage() {
               ))}
             </div>
 
-            <div className="mt-4.5 pt-4.5 border-t border-line text-[13px] leading-[1.7] text-muted-strong">
+            <div className="mt-4.5 pt-4.5 border-t border-line text-[13px] leading-[1.7] text-muted-strong break-keep">
               팀 프로젝트로 진행되어{" "}
               <strong className="text-fg-soft font-semibold">코드 저장소는 비공개</strong>
               입니다. 실제 배포된 서비스는 아래 링크에서 확인하실 수 있습니다.
@@ -253,7 +253,7 @@ export default function SonarbizPage() {
                 LIVE SERVICE
               </span>
               <div className="text-xl font-semibold mt-2">{sonarbiz.siteLabel}</div>
-              <p className="mt-2.5 mb-0 text-sm leading-[1.7] text-muted-strong max-w-[60ch]">
+              <p className="mt-2.5 mb-0 text-sm leading-[1.7] text-muted-strong max-w-[60ch] break-keep">
                 기업·조달 데이터 분석 플랫폼 SONAR를 직접 둘러보실 수 있습니다.
               </p>
             </div>
