@@ -2,7 +2,7 @@
 // 이름/이메일/깃허브 주소 등 TODO 표시된 값만 채워 넣으면 사이트 전체에 반영됩니다.
 
 export const profile = {
-  name: "YOUR NAME", // TODO: 이름 또는 닉네임
+  name: "정남영",
   tagline: "풀스택 개발을 공부하고 경험하는 개발자입니다.",
   intro:
     "프론트엔드와 백엔드를 직접 다뤄보며 어느 정도의 개발 경험을 쌓았습니다. 현재 취업을 준비하며 실무에서 쓸 수 있는 역량을 다지고 있습니다.",
@@ -20,6 +20,59 @@ export const skills = [
   { name: "Express", note: "BE · 서버 프레임워크" },
   { name: "Node.js", note: "런타임" },
 ] as const;
+
+export const bootcamp = {
+  name: "클라우드 기반 풀스택 엔지니어 부트캠프",
+  period: "2025.04 ~ 2025.11",
+  projects: [
+    {
+      name: "VIEW MY STARTUP",
+      description:
+        "여러 스타트업 정보를 탐색하고, 관심 기업을 선택해 투자 현황과 비교 결과를 확인하는 기업 비교 서비스.",
+      team: 4,
+      role: [
+        "나의 기업 비교 결과 페이지 구현",
+        "기업 선택 데이터 처리 흐름 구현",
+        "반응형 디자인 일부 구현 지원",
+      ],
+      stack: ["React", "Express", "PostgreSQL"],
+      siteUrl: "https://melodious-yeot-da7d96.netlify.app/",
+    },
+    {
+      name: "최애의 포토",
+      description:
+        "좋아하는 아이돌·스포츠 스타 등의 디지털 포토카드를 사고팔고 교환하는 개인용 포토카드 마켓플레이스.",
+      team: 6,
+      role: [
+        "[FE] 마켓플레이스 공통·구매자·판매자 페이지 UI 구현",
+        "[BE] 마켓플레이스 API(수정 · 내리기 · 상세조회) 구현",
+      ],
+      stack: ["Next.js", "React", "Node.js", "Express", "PostgreSQL"],
+      siteUrl: "https://7-my-bias-photo-team1-fe-theta.vercel.app/",
+    },
+    {
+      name: "무빙",
+      description:
+        "이사 소비자와 이사 전문가를 매칭하는 서비스. 견적 요청·실시간 채팅·리뷰로 신뢰할 수 있는 이사 전문가를 선택할 수 있습니다.",
+      team: 6,
+      role: [
+        "[BE] 프로필 · 견적 · 리뷰 API, 견적 자동완료(node-cron), 트랜잭션 처리 등 핵심 로직 구현",
+        "[FE] 받은 요청 검색 · 필터 · 채팅 UI 버그 다수 수정",
+      ],
+      stack: ["Next.js", "TypeScript", "NestJS", "Prisma", "PostgreSQL", "AWS EC2"],
+      siteUrl: "https://7-moving-team2-fe.vercel.app/",
+    },
+  ],
+  firstProject: {
+    name: "Match-your-ETF",
+    description:
+      "ETF 투자 정보를 비교하는 서비스. 코딩을 막 배우기 시작한 시점이라 퍼블리셔로 참여해 UI 구현만 담당했고, 동작 로직 구현에는 참여하지 않았습니다.",
+    team: 5,
+    period: "2025.02",
+    award: "프로젝트 장려상 · TABA 7기",
+    githubUrl: "https://github.com/Match-your-ETF",
+  },
+} as const;
 
 export type ProjectSummary = {
   slug: string;
