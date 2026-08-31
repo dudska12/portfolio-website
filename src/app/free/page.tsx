@@ -1,5 +1,6 @@
 import { BackLink } from "@/components/BackLink";
 import { profile, freeOffer } from "@/lib/site-config";
+import { supabaseAdmin } from "@/lib/supabase-admin";
 
 const statusClasses: Record<string, string> = {
   완료: "text-accent border-accent/30 bg-accent/10",
@@ -7,8 +8,38 @@ const statusClasses: Record<string, string> = {
   대기: "text-muted-strong border-line-strong bg-white/4",
 };
 
-export default function FreeWebsitePage() {
-  const waitingCount = freeOffer.queue.filter((q) => q.status === "대기").length;
+type QueueRow = {
+  no: string;
+  who: string;
+  kind: string;
+  status: "완료" | "제작중" | "대기";
+  link: string;
+};
+
+async function getQueue(): Promise<QueueRow[]> {
+  const { data, error } = await supabaseAdmin
+    .from("free_applications")
+    .select("name, business, is_public, status, site_url")
+    .order("submitted_at", { ascending: true });
+
+  if (error) {
+    // 아직 테이블을 안 만들었거나 연결에 실패한 경우, 페이지가 죽지 않고 빈 상태로 보이게 함.
+    console.error("[free page] queue fetch failed:", error.message);
+    return [];
+  }
+
+  return (data ?? []).map((row, i) => ({
+    no: String(i + 1).padStart(2, "0"),
+    who: row.is_public ? row.name : "비공개",
+    kind: row.business,
+    status: row.status as QueueRow["status"],
+    link: row.is_public ? row.site_url ?? "" : "",
+  }));
+}
+
+export default async function FreeWebsitePage() {
+  const queue = await getQueue();
+  const waitingCount = queue.filter((q) => q.status === "대기").length;
 
   return (
     <>
@@ -18,7 +49,7 @@ export default function FreeWebsitePage() {
         <section className="pt-16 pb-16">
           <div className="inline-flex items-center gap-2.5 px-3 py-1.5 border border-ok/30 rounded-full font-mono text-[11px] tracking-[0.12em] text-ok mb-6.5">
             <span className="w-1.5 h-1.5 rounded-full bg-ok animate-pulse-dot" />
-            지금 신청 접수중 · 대기 {waitingCount}팀
+            {queue.length > 0 ? `지금 신청 접수중 · 대기 ${waitingCount}팀` : "지금 신청 접수중 · 선착순 모집"}
           </div>
           <h1 className="m-0 mb-6 text-4xl md:text-[60px] leading-[1.08] tracking-tight font-bold text-balance">
             홈페이지, <span className="text-accent">무료로</span>
@@ -135,39 +166,48 @@ export default function FreeWebsitePage() {
             </h2>
             <span className="text-[13px] text-muted-weak">신청 순서대로 진행됩니다</span>
           </div>
-          <div className="border border-line-strong/70 rounded-2xl overflow-hidden overflow-x-auto">
-            <div className="min-w-[560px]">
-              <div className="grid grid-cols-[56px_1.1fr_1fr_100px_110px] md:grid-cols-[72px_1.1fr_1fr_120px_130px] gap-4 px-5 md:px-5.5 py-3.5 bg-bg-card-strong border-b border-line font-mono text-[11px] tracking-[0.12em] text-muted-weak">
-                <span>NO.</span>
-                <span>신청자</span>
-                <span>종류</span>
-                <span>상태</span>
-                <span>링크</span>
-              </div>
-              {freeOffer.queue.map((q) => (
-                <div
-                  key={q.no}
-                  className="grid grid-cols-[56px_1.1fr_1fr_100px_110px] md:grid-cols-[72px_1.1fr_1fr_120px_130px] gap-4 px-5 md:px-5.5 py-4.5 border-b border-line/70 last:border-b-0 bg-bg-card items-center text-sm"
-                >
-                  <span className="font-mono text-muted-weak">{q.no}</span>
-                  <span className="text-fg">{q.who}</span>
-                  <span className="text-muted-strong">{q.kind}</span>
-                  <span>
-                    <span
-                      className={`font-mono text-[11px] tracking-[0.08em] px-2.5 py-1 rounded-full border ${statusClasses[q.status]}`}
-                    >
-                      {q.status}
-                    </span>
-                  </span>
-                  <span
-                    className={`font-mono text-[13px] ${q.link ? "text-accent" : "text-dim-strong"}`}
-                  >
-                    {q.link || "—"}
-                  </span>
+          {queue.length > 0 ? (
+            <div className="border border-line-strong/70 rounded-2xl overflow-hidden overflow-x-auto">
+              <div className="min-w-[560px]">
+                <div className="grid grid-cols-[56px_1.1fr_1fr_100px_110px] md:grid-cols-[72px_1.1fr_1fr_120px_130px] gap-4 px-5 md:px-5.5 py-3.5 bg-bg-card-strong border-b border-line font-mono text-[11px] tracking-[0.12em] text-muted-weak">
+                  <span>NO.</span>
+                  <span>신청자</span>
+                  <span>종류</span>
+                  <span>상태</span>
+                  <span>링크</span>
                 </div>
-              ))}
+                {queue.map((q) => (
+                  <div
+                    key={q.no}
+                    className="grid grid-cols-[56px_1.1fr_1fr_100px_110px] md:grid-cols-[72px_1.1fr_1fr_120px_130px] gap-4 px-5 md:px-5.5 py-4.5 border-b border-line/70 last:border-b-0 bg-bg-card items-center text-sm"
+                  >
+                    <span className="font-mono text-muted-weak">{q.no}</span>
+                    <span className="text-fg">{q.who}</span>
+                    <span className="text-muted-strong">{q.kind}</span>
+                    <span>
+                      <span
+                        className={`font-mono text-[11px] tracking-[0.08em] px-2.5 py-1 rounded-full border ${statusClasses[q.status]}`}
+                      >
+                        {q.status}
+                      </span>
+                    </span>
+                    <span
+                      className={`font-mono text-[13px] ${q.link ? "text-accent" : "text-dim-strong"}`}
+                    >
+                      {q.link || "—"}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="border border-dashed border-line-strong rounded-2xl px-6 py-12 text-center">
+              <p className="m-0 text-[15px] text-muted-strong">아직 신청자가 없습니다.</p>
+              <p className="m-0 mt-1.5 text-sm text-muted-weak">
+                첫 번째로 신청해주시는 분의 사이트가 여기 가장 먼저 올라갑니다.
+              </p>
+            </div>
+          )}
           <p className="mt-3.5 text-[13px] leading-[1.7] text-muted-weak">
             공개 여부는 신청자 동의 후에만 표시합니다. 비공개를 원하시면 신청서에 적어주세요.
           </p>

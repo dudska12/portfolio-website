@@ -417,7 +417,7 @@ export const chatSentry = {
 } as const;
 
 export const freeOffer = {
-  formUrl: "https://forms.gle/", // TODO: 실제 구글폼 주소
+  formUrl: "https://forms.gle/CKsyZB5nmkK1MSwSA",
   costs: [
     { label: "제작비", value: "0원", tone: "accent", note: "기획 · 디자인 · 개발 전부 무료" },
     { label: "도메인 (주소)", value: "연 2만원 내외", tone: "default", note: ".com / .kr 등, 업체 결제는 직접" },
@@ -450,13 +450,6 @@ export const freeOffer = {
     { no: "04", title: "제작", desc: "보통 1~2주. 중간에 시안을 보여드리고 수정 의견을 받습니다." },
     { no: "05", title: "도메인·호스팅 연결 후 오픈", desc: "결제는 직접 하시고, 연결 작업과 설명은 제가 도와드립니다. 이후 간단한 수정 방법도 알려드립니다." },
   ],
-  queue: [
-    { no: "01", who: "○○ 공방", kind: "소개 · 작품 갤러리", status: "완료", link: "sample-1.kr" },
-    { no: "02", who: "○○ 필라테스", kind: "소개 · 예약 문의", status: "완료", link: "sample-2.kr" },
-    { no: "03", who: "○○ 카페", kind: "메뉴 · 오시는 길", status: "제작중", link: "" },
-    { no: "04", who: "○○ 스터디", kind: "모집 페이지", status: "대기", link: "" },
-    { no: "05", who: "신청 가능", kind: "—", status: "대기", link: "" },
-  ] as { no: string; who: string; kind: string; status: "완료" | "제작중" | "대기"; link: string }[],
   faq: [
     { q: "정말 공짜인가요? 나중에 비용을 청구하나요?", a: "제작비는 청구하지 않습니다. 다만 도메인·호스팅은 외부 업체에 내는 실비라 신청자분이 직접 결제해야 합니다." },
     { q: "컴퓨터를 잘 몰라도 신청할 수 있나요?", a: "네. 신청서에 하시는 일만 적어주시면 필요한 것은 제가 물어보며 정리합니다." },
