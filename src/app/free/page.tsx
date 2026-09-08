@@ -134,6 +134,19 @@ export default async function FreeWebsitePage() {
                 </div>
               ))}
             </div>
+            <div className="mt-5.5 pt-5 border-t border-warn/25">
+              <p className="m-0 mb-3.5 text-[13px] leading-[1.7] text-muted-strong break-keep">
+                도메인·호스팅을 어디서 어떻게 정하면 되는지 안내서로 정리해 뒀어요. 신청 전에 한 번 읽어봐 주세요.
+              </p>
+              <a
+                href="/웹사이트오픈안내서.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2.5 px-5 py-3.5 rounded-[10px] border border-warn/40 text-fg text-sm font-semibold"
+              >
+                📄 웹사이트 오픈 안내서 (PDF)
+              </a>
+            </div>
           </div>
         </section>
 
