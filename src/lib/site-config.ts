@@ -85,6 +85,19 @@ export type ProjectSummary = {
 
 export const projects: ProjectSummary[] = [
   {
+    slug: "daon",
+    name: "다온 (Daon)",
+    tags: [
+      { label: "SIDE PROJECT", tone: "accent" },
+      { label: "DESKTOP APP", tone: "accent" },
+      { label: "LIVE", tone: "ok" },
+    ],
+    summary:
+      "하루 할 일을 한 줄로 적으면 AI가 시간표를 짜주는 업무 비서. 웹·API·데스크톱 앱을 혼자 설계·개발하고, 인프라 비용 0원 구성으로 배포까지 운영하고 있습니다.",
+    chips: ["Next.js", "NestJS", "Prisma", "PostgreSQL", "Electron", "Claude API"],
+    image: "/projects/daon/plan.png",
+  },
+  {
     slug: "sonarbiz",
     name: "SONAR",
     tags: [
@@ -109,6 +122,246 @@ export const projects: ProjectSummary[] = [
     image: "/projects/chatsentry/chat-monitor.png",
   },
 ];
+
+export const daon = {
+  appName: "다온 (Daon)",
+  meta: "기획·디자인·FE·BE·배포 1인",
+  year: "2026",
+  status: "LIVE",
+  author: profile.name,
+  contact: profile.email,
+  siteUrl: "https://daon-namyoung.vercel.app",
+  siteLabel: "daon-namyoung.vercel.app",
+  releasesUrl: "https://github.com/dudska12/daon-releases/releases/latest",
+  releasesRepoLabel: "github.com/dudska12/daon-releases",
+  heroTitleLines: ["하루를 말하면,"],
+  heroTitleHighlight: "일정이",
+  heroTitleSuffix: "됩니다",
+  heroDesc:
+    "\"오전엔 API 문서 마무리, 4시에 강남 미팅\"처럼 적으면 AI가 약속과 할 일을 나눠 빈 시간에 배치하는 업무 비서입니다. 웹 대시보드와 항상 떠 있는 데스크톱 독·위젯으로 진행률을 챙기고, 창 단위 캡처와 폴더 자동 정리까지 대신해주며, 미팅 출발 알림과 루틴 알림을 보내며, 퇴근할 때는 회사 워드 양식에 맞춰 업무 보고서까지 채워줍니다. 기획부터 배포·운영까지 혼자 진행한 프로젝트입니다.",
+  stats: [
+    { label: "앱 (웹 · API · 데스크톱)", value: "3개" },
+    { label: "AI 도구 (Tool Use)", value: "7개" },
+    { label: "API 모듈", value: "11개" },
+    { label: "월 인프라 비용", value: "0원" },
+  ],
+  download: {
+    version: "1.1.0",
+    buildSize: "78 MB",
+    notice:
+      "코드 서명 인증서가 없어 처음 받을 때 브라우저와 Windows가 경고를 띄울 수 있습니다. 다운로드 목록에서 \"유지 → 그래도 계속\", 실행 시 \"추가 정보 → 실행\"을 눌러주세요. 설치 후에는 새 버전이 자동으로 업데이트됩니다.",
+  },
+  shots: [
+    {
+      id: "shot-plan",
+      label: "AI 하루 계획",
+      title: "plan",
+      desc: "한 줄 입력을 약속(고정)과 할 일(유동)로 나눠 빈 시간에 배치합니다. 지난 시간·중복·겹침은 서버에서 한 번 더 걸러냅니다.",
+      placeholder: "AI 하루 계획 화면 스크린샷",
+      image: "/projects/daon/plan.png" as string | undefined,
+    },
+    {
+      id: "shot-desktop",
+      label: "데스크톱 독 · 위젯",
+      title: "desktop",
+      desc: "화면 옆에 항상 떠 있는 독에서 캘린더·할 일·포스트잇·캡처·폴더 정리를 바로 엽니다. 투명도와 방향은 사용자가 조절합니다.",
+      placeholder: "데스크톱 독 · 위젯 스크린샷",
+      image: "/projects/daon/desktop.png" as string | undefined,
+    },
+    {
+      id: "shot-report",
+      label: "보고서 빌더",
+      title: "report",
+      desc: "기본 양식 3종 외에, 회사에서 쓰던 워드 양식을 올리면 AI가 채울 자리를 찾아 서식 그대로 채워 줍니다. 양식 파일은 기기에만 저장됩니다.",
+      placeholder: "보고서 빌더 화면 스크린샷",
+      image: "/projects/daon/report.png" as string | undefined,
+    },
+    {
+      id: "shot-routine",
+      label: "루틴 알림",
+      title: "routine",
+      desc: "약 먹기·물 마시기처럼 반복되는 일을 정해진 시각이나 간격마다 알리고, 알림을 누르면 바로 체크됩니다.",
+      placeholder: "루틴 알림 스크린샷",
+      image: "/projects/daon/routine.png" as string | undefined,
+    },
+    {
+      id: "shot-meeting",
+      label: "미팅 · 공유",
+      title: "meeting",
+      desc: "미팅 장소까지 이동 시간을 계산해 출발 알림을 주고, 로그인 없이 볼 수 있는 읽기 전용 일정 링크를 만듭니다(개인 일정은 제외).",
+      placeholder: "미팅 · 공유 화면 스크린샷",
+      image: "/projects/daon/meeting.png" as string | undefined,
+    },
+  ],
+  features: [
+    {
+      no: "01",
+      title: "AI 하루 계획",
+      desc: "자연어 입력을 Claude Tool Use로 JSON 제안만 받아 화면에 보여주고, 저장은 사용자가 확인한 뒤에만 합니다. 오전/오후, 지난 시간, 종료 시간 누락은 서버 규칙으로 한 번 더 보정합니다.",
+    },
+    {
+      no: "02",
+      title: "한 줄로 일정 변경",
+      desc: "\"3시 미팅 5시로 바뀌었어\" → 겹치는 일정만 옮긴 새 시간표를 제안합니다.",
+    },
+    {
+      no: "03",
+      title: "지금 뭐 하지?",
+      desc: "남은 시간, 마감, 진행률로 지금 할 일을 추천합니다. AI 호출 없이 서버 규칙으로 계산해 비용이 들지 않습니다.",
+    },
+    {
+      no: "04",
+      title: "알아듣기 어려운 입력 되묻기",
+      desc: "의미 없는 입력은 미리 걸러내고, 애매한 입력은 AI가 추측하지 않고 되묻게 했습니다.",
+    },
+    {
+      no: "05",
+      title: "보고서 빌더",
+      desc: "기본 양식은 서버에서 docx로 생성합니다. 회사 양식은 브라우저에서 docx(zip)의 XML을 직접 수정해 병합 셀, 표 행 늘리기, 기존 서식을 유지한 채 채웁니다.",
+    },
+    {
+      no: "06",
+      title: "루틴",
+      desc: "\"정해진 시각\"과 \"N분 간격\" 두 가지 반복을 지원합니다. 데스크톱 알림에서 바로 체크할 수 있습니다.",
+    },
+    {
+      no: "07",
+      title: "데스크톱 독 · 위젯",
+      desc: "캘린더, 할 일, 포스트잇, 창 단위 캡처, 규칙 기반 폴더 자동 정리, \"오늘 한눈에\" 브리핑을 제공합니다.",
+    },
+    {
+      no: "08",
+      title: "계정 · 보안",
+      desc: "이메일(6자리 인증번호) / 구글 로그인, 14일 자동 로그인, 기기 관리, 회원 탈퇴, 가입 없는 체험 계정을 지원합니다.",
+    },
+    {
+      no: "09",
+      title: "꾸미기 동기화",
+      desc: "색·배경·폰트·스티커·위젯 유리색을 계정에 저장해 모든 기기에서 같게 보입니다.",
+    },
+    {
+      no: "10",
+      title: "자동 업데이트 · 자동 실행",
+      desc: "새 버전을 뒤에서 받아 두었다가 알림으로 알리고, 컴퓨터를 켜면 창 없이 독·위젯만 조용히 뜹니다.",
+    },
+  ],
+  stack: [
+    {
+      name: "Next.js 16 · React 19",
+      tag: "FRONTEND",
+      desc: "웹 대시보드이자 데스크톱 메인 창. API 요청을 대신 전달하는 프록시 역할도 해서 도메인 없이도 로그인 쿠키가 막히지 않게 했습니다.",
+    },
+    {
+      name: "Tailwind CSS 4",
+      tag: "STYLE",
+      desc: "사용자가 고른 색·배경을 CSS 변수 테마로 적용합니다.",
+    },
+    {
+      name: "NestJS 10",
+      tag: "BACKEND",
+      desc: "인증, 일정, AI, 보고서, 루틴 등 11개 모듈. 모든 조회·수정을 계정 단위로 제한합니다.",
+    },
+    {
+      name: "Prisma 5 · PostgreSQL",
+      tag: "DATA",
+      desc: "11개 모델. 배포 때 마이그레이션이 자동 적용됩니다.",
+    },
+    {
+      name: "Claude API (Tool Use)",
+      tag: "AI",
+      desc: "7개 도구로 계획·변경·루틴·양식 매핑 등을 JSON으로만 받습니다. 기본은 Haiku, 계획 짜기만 Sonnet으로 나눠 비용을 줄였습니다.",
+    },
+    {
+      name: "Electron 33",
+      tag: "DESKTOP",
+      desc: "독, 위젯, 알림, 캡처, 폴더 정리. electron-updater + GitHub Releases로 자동 업데이트합니다.",
+    },
+    {
+      name: "자체 인증",
+      tag: "AUTH",
+      desc: "외부 인증 라이브러리 없이 scrypt 비밀번호, 15분 출입증 + 14일 httpOnly 갱신 쿠키, 구글 OAuth(PKCE), 데스크톱은 daon:// 딥링크로 로그인을 넘겨받습니다.",
+    },
+  ],
+  flow: [
+    "한 줄 입력",
+    "Claude Tool Use(JSON 제안)",
+    "서버 규칙으로 보정",
+    "사용자 확인 후 저장",
+    "웹 · 데스크톱 위젯 · 알림",
+  ],
+  deployDiagram: `사용자 브라우저 / 데스크톱 앱
+        │
+        ▼
+  Vercel (웹, Next.js) ─── /api/* 전달 ───▶ Render (API, NestJS) ───▶ Neon (PostgreSQL)
+        │                                        │
+        └◀── /internal/mail 메일 발송 부탁 ──────┘
+        │
+        └──▶ 네이버 SMTP (가입 인증번호)
+
+데스크톱 앱 ──▶ GitHub Releases (daon-releases)  새 버전 확인 · 자동 업데이트
+외부 서비스: Anthropic(AI) · NAVER(지도)`,
+  deployNotes: [
+    { label: "웹", desc: "Vercel (Hobby, 무료) — GitHub에 push하면 자동 배포" },
+    {
+      label: "API",
+      desc: "Render (Free, 싱가포르) — render.yaml 블루프린트로 빌드·마이그레이션·헬스체크까지 설정",
+    },
+    { label: "DB", desc: "Neon Postgres (Free, 싱가포르)" },
+    {
+      label: "메일",
+      desc: "무료 서버의 메일 포트 차단을 피해, 웹 서버(Vercel)를 거쳐 네이버 SMTP로 발송. 두 서버가 나눠 가진 비밀값이 맞을 때만 보냅니다.",
+    },
+    {
+      label: "데스크톱",
+      desc: "electron-builder로 Windows 설치 파일 생성, 공개 저장소(daon-releases)의 Release에 올리면 설치된 앱이 알아서 업데이트",
+    },
+    {
+      label: "운영 안전장치",
+      desc: "필수 비밀값이 비었거나 약하면 서버가 켜지지 않음, 보안 헤더(HSTS·클릭재킹 방지), 500 에러 원인은 서버 로그에만, 개인정보처리방침·이용약관·회원 탈퇴 제공",
+    },
+  ],
+  retro: [
+    {
+      problem: "도메인 없이 배포하니 15분마다 로그아웃",
+      solution:
+        "웹(vercel.app)과 API(onrender.com)가 서로 다른 사이트라 브라우저가 로그인 유지 쿠키를 보내지 않았습니다. → Next.js rewrites로 웹이 /api/*를 API 서버로 대신 전달하게 바꿔, 브라우저 입장에서 같은 사이트가 되게 했습니다. 쿠키 경로와 접속 IP 판별도 프록시 구조에 맞췄습니다.",
+    },
+    {
+      problem: "무료 서버에서 인증 메일이 안 나감",
+      solution:
+        "Render 무료 플랜이 메일 포트(465/587)를 막고 있었습니다. → 막히지 않는 Vercel에 메일 중계 엔드포인트를 두고, 서버끼리 공유 비밀값으로 인증해 대신 보내게 했습니다. 외부 메일 라이브러리 없이 작은 SMTP 클라이언트를 직접 작성했습니다.",
+    },
+    {
+      problem: "AI 비용과 정확도 사이의 균형",
+      solution:
+        "가장 싼 모델(Haiku)로 바꾸자 \"11시 미팅\"을 놓치는 등 계획 품질이 떨어졌습니다. → 기능별로 모델을 나눠 계획 짜기만 상위 모델을 쓰고, 나머지는 Haiku를 유지했습니다. AI가 종료 시간을 빼먹어 생기던 500 에러는 서버에서 제안을 한 번 더 검증해 막았습니다.",
+    },
+    {
+      problem: "한 PC에서 여러 계정의 데이터가 섞임",
+      solution:
+        "서버 데이터는 계정별로 분리돼 있었지만, 데스크톱에 저장하던 포스트잇·폴더 규칙·꾸미기는 공용 파일이었습니다. → 로컬 저장소를 계정별 파일로 나누고, 로그인 기능 이전 데이터는 처음 로그인한 계정이 가져가도록 이전했습니다.",
+    },
+    {
+      problem: "회사 워드 양식을 서식 그대로 채우기",
+      solution:
+        "양식마다 병합 셀, 반복되는 표 행, \"오전/오후\" 칸 구성이 제각각이었습니다. → 문서의 글자만 AI로 분석해 채울 위치를 찾고, 실제 채우기는 브라우저에서 docx XML을 직접 수정했습니다. 원본 파일은 서버로 보내지 않고 기기에만 저장합니다.",
+    },
+    {
+      problem: "설치 파일에서 자동 업데이트 모듈이 빠지는 문제",
+      solution:
+        "pnpm 모노레포는 패키지를 링크로 연결해서 Electron 패키징 때 의존성이 누락될 수 있었습니다. → esbuild로 업데이트 모듈을 한 파일로 묶어 앱 코드와 함께 넣었습니다.",
+    },
+    {
+      problem: "개발 방식",
+      solution:
+        "Claude를 페어 프로그래머로 활용해 구현 속도를 높였고, 기능 설계·UX 판단·직접 QA와 문제 재현·배포 운영 결정에 집중했습니다.",
+    },
+  ],
+  cta: {
+    desc: "하루를 말하면, 일정이 됩니다. 가입 없이 \"체험하기\"로 바로 써볼 수 있어요.",
+    note: "무료 서버라 한동안 아무도 쓰지 않았다면 첫 접속이 조금 느릴 수 있습니다.",
+  },
+} as const;
 
 export const sonarbiz = {
   appName: "SONAR",
@@ -233,8 +486,8 @@ export const chatSentry = {
   appName: "치지직 채팅 리포트",
   version: "0.9.2",
   buildSize: "88 MB",
-  repoUrl: "https://github.com/", // TODO: 실제 저장소 주소
-  repoLabel: "github.com/username/chatsentry", // TODO
+  repoUrl: "https://github.com/dudska12/chzzk-chat-report",
+  repoLabel: "github.com/dudska12/chzzk-chat-report",
   author: profile.name,
   contact: profile.email,
   heroTitleLines: ["라이브 방송 채팅을", "실시간으로 감시하고,"],

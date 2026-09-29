@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { profile } from "@/lib/site-config";
+import { ChatWidget } from "@/components/ChatWidget";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="min-h-full flex flex-col bg-bg text-fg">
         {children}
+        <ChatWidget />
         <Analytics />
       </body>
     </html>
